@@ -32,8 +32,8 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
     writeDecimal(4, pixelDataSize);
     writeDecimal(4, dpi);
     writeDecimal(4, dpi);
-    writeDecimal(4, 0);
-    writeDecimal(4, 0);
+    writeZeros(4);
+    writeZeros(4);
 
 // Write pixel array
     for (size_t row { h - 1 }; row > 0; row--) {
