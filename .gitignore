@@ -1,0 +1,12 @@
+# VSCode
+.vscode/
+
+# Builds
+**/build/
+
+# Scripts
+*.sh
+*.bat
+
+# Bitmaps
+*.bmp
