@@ -4,6 +4,10 @@
 # Builds
 **/build/
 
+# Binaries outside build folders
+*.out
+*.exe
+
 # Scripts
 *.sh
 *.bat

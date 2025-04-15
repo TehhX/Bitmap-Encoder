@@ -1,5 +1,7 @@
 #include <fstream>
 
+using u_char = unsigned char;
+
 int main() {
 // File output stream
     std::ofstream out { "out.bmp" };
