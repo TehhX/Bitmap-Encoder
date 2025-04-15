@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SRC
     src/main.cpp
+    src/encoder.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
