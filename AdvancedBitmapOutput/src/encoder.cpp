@@ -36,17 +36,12 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
     writeZeros(4);
 
 // Write pixel array
-    for (size_t row { h - 1 }; row > 0; row--) {
+    for (long long row { static_cast<long long>(h) - 1 }; row >= 0; row--) {
         for (size_t col { 0 }; col < w; col++)
             out << pixels[getIndex(row, col)];
 
         writeZeros(padsPerRow);
     }
-
-    for (size_t col { 0 }; col < w; col++)
-        out << pixels[getIndex(0, col)];
-    
-    writeZeros(padsPerRow);
 
     out.close();
 
