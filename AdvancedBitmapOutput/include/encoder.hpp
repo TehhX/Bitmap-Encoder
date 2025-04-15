@@ -23,6 +23,4 @@ class Encoder {
 
 public:
     Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h);
-
-    ~Encoder();
 };

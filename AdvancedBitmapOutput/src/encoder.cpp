@@ -13,7 +13,7 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
     static constexpr int headerSize { 54 };
     static constexpr int dpi { 2835 };
 
-    const u_long padsPerRow { w % 4 == 0 ? 0 : -( w % byteFacReq ) + byteFacReq };
+    const u_long padsPerRow { w % 4 == 0 ? 0 : -( (sizeof(Pixel) * w) % byteFacReq ) + byteFacReq };
     const u_long pixelDataSize { sizeof(Pixel) * pixelCount + h * padsPerRow };
 
 // Write BMP header
@@ -47,6 +47,13 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
         out << pixels[getIndex(0, col)];
     
     writeZeros(padsPerRow);
+
+    out.close();
+
+    if (out.fail()) {
+        std::cerr << "Could not close file.\n";
+        exit(-1);
+    }
 }
 
 size_t Encoder::getIndex(int row, int col) const {
@@ -76,13 +83,4 @@ void Encoder::writeZeros(short bytes) {
 
 void Encoder::writePixel(const Pixel& pixel) {
     out << pixel;
-}
-
-Encoder::~Encoder() {
-    out.close();
-
-    if (out.fail()) {
-        std::cerr << "Could not close Encoder file.\n";
-        exit(-1);
-    }
 }

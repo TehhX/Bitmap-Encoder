@@ -3,12 +3,20 @@
 #include <iostream>
 
 int main() {
-    Pixel px[] {
-        {   0,   0, 255 },
-        {   0, 255,   0 },
+    Pixel chroma[] {
+    // Row 1
         { 255,   0,   0 },
-        { 255, 255, 255 }
+        {   0, 255,   0 },
+        {   0,   0, 255 },
+    // Row 2
+        { 128, 128, 128 },
+        {   0,   0,   0 },
+        { 255, 255, 255 },
+    // Row 3
+        { 255, 165,   0 },
+        { 128,   0, 128 },
+        { 127, 255, 212 }
     };
 
-    Encoder enc { "outputImage.bmp", px, 2, 2 };
+    Encoder encChroma { "chroma.bmp", chroma, 3, 3};
 }
