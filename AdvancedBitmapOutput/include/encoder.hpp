@@ -15,12 +15,9 @@ class Encoder {
 
     const Pixel* pixels;
 
-    // Funcs
-    void writeHeaderBMP();
-    void writeHeaderDIB();
-    void writePixels();
+    inline size_t getIndex(int row, int col) const;
 
-    void writeDecimal(short bytes, u_long decimalvoid);
+    void writeDecimal(short bytes, u_llong decimalvoid);
     void writeZeros(short bytesvoid);
     void writePixel(const Pixel& pixel);
 
