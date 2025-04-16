@@ -16,7 +16,7 @@ class Encoder {
 
     Pixel* pixels;
 
-    void writeDecimal(short bytes, u_llong decimalvoid);
+    void writeDecimal(short bytes, u_llong decimal);
     void writeZeros(short bytesvoid);
     void writePixel(const Pixel& pixel);
 
