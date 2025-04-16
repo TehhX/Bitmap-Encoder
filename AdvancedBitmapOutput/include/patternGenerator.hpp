@@ -9,7 +9,7 @@ protected:
     PatternGen(size_t w, size_t h);
 
 public:
-    const Image& getImage() const;
+    Image& getImage();
 };
 
 class Formula : public PatternGen {

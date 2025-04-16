@@ -3,7 +3,7 @@
 #include <encoder.hpp>
 #include <image.hpp>
 
-Encoder::Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h)
+Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
 : out { fileName }, pixels { pixels }, w { w }, h { h }, pixelCount { w * h } {
     if (!out.is_open()) {
         std::cerr << "Could not open encoder file.\n";
@@ -14,8 +14,8 @@ Encoder::Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h)
     static constexpr int headerSize { 54 };
     static constexpr int dpi { 2835 };
 
-    const u_long padsPerRow { w % 4 == 0 ? 0 : -( (sizeof(Pixel) * w) % byteFacReq ) + byteFacReq };
-    const u_long pixelDataSize { sizeof(Pixel) * pixelCount + h * padsPerRow };
+    const auto padsPerRow { w % 4 == 0 ? 0 : -( static_cast<u_long>(sizeof(Pixel) * w) % byteFacReq ) + byteFacReq };
+    const auto pixelDataSize { static_cast<u_long>(sizeof(Pixel) * pixelCount + h * padsPerRow) };
 
 // Write BMP header
     out << 'B' << 'M';
@@ -39,7 +39,7 @@ Encoder::Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h)
 // Write pixel array
     for (auto row { static_cast<long long>(h) - 1 }; row >= 0; row--) {
         for (size_t col { 0 }; col < w; col++)
-            out << pixels[getIndex(w, row, col)];
+            out << pixels[Image::getIndex(w, col, row)];
 
         writeZeros(padsPerRow);
     }
@@ -52,7 +52,7 @@ Encoder::Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h)
     }
 }
 
-Encoder::Encoder(std::string fileName, const Image& image)
+Encoder::Encoder(std::string fileName, Image& image)
 : Encoder { fileName, image.pixels, image.w, image.h } {}
 
 void Encoder::writeDecimal(short bytes, u_llong decimal) {

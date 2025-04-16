@@ -4,14 +4,14 @@
 #include <encoder.hpp>
 #include <patternGenerator.hpp>
 
-constexpr size_t w { 1080 };
-constexpr size_t h { 1920 };
+constexpr size_t w { 1920 };
+constexpr size_t h { 1080 };
 
 constexpr size_t w1 { w - 1 };
 constexpr size_t h1 { h - 1 };
 
 void chromaManual() {
-    Pixel chroma[] {
+    static Pixel chroma[ 3 * 3 ] {
     // Row 1
         { 255,   0,   0 },
         {   0, 255,   0 },
@@ -30,7 +30,7 @@ void chromaManual() {
 }
 
 void pinkCopy() {
-    Pixel allPink[1920 * 1080];
+    static Pixel allPink[ w * h ];
     for (size_t i { 0 }; i < 1920 * 1080; i++)
         allPink[i] = { 255, 0, 128 };
 
@@ -38,7 +38,7 @@ void pinkCopy() {
 }
 
 void redImage() {
-    Pixel allRed[1920 * 1080];
+    static Pixel allRed[ w * h ];
     for (size_t i { 0 }; i < 1920 * 1080; i++)
         allRed[i] = { 255, 0, 0 };
 
@@ -47,19 +47,15 @@ void redImage() {
     Encoder redEnc { "redImage.bmp", redImg };
 }
 
-size_t fFormula(size_t x) {
-    return 0;
-    //auto y {static_cast<size_t>( h1 / 2 * std::sin( x / 150.0 ) - h1 / 2.0 )};
-
-    //std::cout << y << '\n';
+size_t bigSine(size_t x) {
+    return h1 / 2.0 * std::sin( x / 100.0 ) + h1 / 2.0;
 }
 
 void formula() {
-    Formula frmla { 1920, 1080, fFormula, { 255, 0, 0 } };
+    Formula inFormula { 1920, 1080, bigSine, { 255, 0, 0 } };
 
-    Encoder enc { "formula.bmp", frmla.getImage() };
+    Encoder enc { "formula.bmp", inFormula.getImage() };
 }
-
 int main() {
     chromaManual();
 

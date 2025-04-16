@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SRC
     src/encoder.cpp
+    src/image.cpp
     src/main.cpp
     src/patternGenerator.cpp
 )

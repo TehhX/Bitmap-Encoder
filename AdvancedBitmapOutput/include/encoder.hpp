@@ -10,18 +10,18 @@ class Encoder {
     // Vars
     std::ofstream out;
 
-    const u_long w;
-    const u_long h;
+    const size_t w;
+    const size_t h;
     const size_t pixelCount;
 
-    const Pixel* pixels;
+    Pixel* pixels;
 
     void writeDecimal(short bytes, u_llong decimalvoid);
     void writeZeros(short bytesvoid);
     void writePixel(const Pixel& pixel);
 
 public:
-    Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h);
+    Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h);
 
-    Encoder(std::string fileName, const Image& image);
+    Encoder(std::string fileName, Image& image);
 };
