@@ -1,5 +1,6 @@
 #pragma once
 
+#include <encoderDefs.hpp>
 #include <pixel.hpp>
 
 class Image {
