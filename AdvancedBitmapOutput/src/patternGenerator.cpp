@@ -31,7 +31,7 @@ BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), u_char
     for (size_t x { 0 }; x < img.w; x++) {
         u_long y { -formula(x) + h - 1 };
 
-        if (img.getIndex(x, y) < img.pixelCount)
+        if (y < img.h)
             img.getPixel(x, y) = { r, g, b };
     }
 }
