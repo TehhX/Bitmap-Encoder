@@ -3,6 +3,7 @@
 #include <fstream>
 
 #include <encoderDefs.hpp>
+#include <image.hpp>
 #include <pixel.hpp>
 
 class Encoder {
@@ -15,12 +16,12 @@ class Encoder {
 
     const Pixel* pixels;
 
-    inline size_t getIndex(int row, int col) const;
-
     void writeDecimal(short bytes, u_llong decimalvoid);
     void writeZeros(short bytesvoid);
     void writePixel(const Pixel& pixel);
 
 public:
-    Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h);
+    Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h);
+
+    Encoder(std::string fileName, const Image& image);
 };

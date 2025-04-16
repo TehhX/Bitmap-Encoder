@@ -1,8 +1,9 @@
 #include <iostream>
 
 #include <encoder.hpp>
+#include <image.hpp>
 
-Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
+Encoder::Encoder(std::string fileName, const Pixel pixels[], u_long w, u_long h)
 : out { fileName }, pixels { pixels }, w { w }, h { h }, pixelCount { w * h } {
     if (!out.is_open()) {
         std::cerr << "Could not open encoder file.\n";
@@ -36,9 +37,9 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
     writeZeros(4);
 
 // Write pixel array
-    for (long long row { static_cast<long long>(h) - 1 }; row >= 0; row--) {
+    for (auto row { static_cast<long long>(h) - 1 }; row >= 0; row--) {
         for (size_t col { 0 }; col < w; col++)
-            out << pixels[getIndex(row, col)];
+            out << pixels[getIndex(w, row, col)];
 
         writeZeros(padsPerRow);
     }
@@ -51,9 +52,8 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], u_long w, u_long h)
     }
 }
 
-size_t Encoder::getIndex(int row, int col) const {
-    return row * w + col;
-}
+Encoder::Encoder(std::string fileName, const Image& image)
+: Encoder { fileName, image.pixels, image.w, image.h } {}
 
 void Encoder::writeDecimal(short bytes, u_llong decimal) {
     bitMask mask1 { 0x00'00'00'FF };

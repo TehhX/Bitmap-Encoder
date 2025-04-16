@@ -3,8 +3,9 @@ project(AdvancedBitmapOutput LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 set(SRC
-    src/main.cpp
     src/encoder.cpp
+    src/main.cpp
+    src/patternGenerator.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
