@@ -12,6 +12,10 @@ size_t Image::getIndex(size_t w, int x, int y) {
     return x + w * y;
 }
 
+size_t Image::getIndex(int x, int y) {
+    return getIndex(w, x, y);
+}
+
 Pixel& Image::getPixel(int x, int y) {
     return pixels[getIndex(w, x, y)];
 }

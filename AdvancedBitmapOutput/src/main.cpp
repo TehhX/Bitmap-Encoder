@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 
+#include <encoderDefs.hpp>
 #include <pixel.hpp>
 #include <encoder.hpp>
 #include <patternGenerator.hpp>
@@ -30,7 +31,14 @@ int main() {
 }
 
 {
-    BasicFormula basicFormulaFormula { 1920, 1080, [](size_t x) -> size_t { return std::pow(x / 40.0, 2); }, { 255, 255, 255 } };
-    Encoder basicFormulaEncoder { "basicFormula.bmp", basicFormulaFormula.getImage() };
+    const auto sineFormulaExample { [](size_t x) -> size_t { return 1080 / 2 * std::sin(x / 50.0) + 1080 / 2; } };
+    BasicFormula basicFormulaFormula { 1920, 1080, sineFormulaExample, Color::orange };
+    Encoder basicFormulaEncoder { "sinusoidalFormula.bmp", basicFormulaFormula.getImage() };
+}
+
+{
+    const auto quadraticFormulaExample { [](size_t x) -> size_t { return std::pow((static_cast<long long>(x) - 960) / 29.5, 2); } };
+    BasicFormula basicFormulaFormula { 1920, 1080, quadraticFormulaExample, Color::blue };
+    Encoder basicFormulaEncoder { "quadraticFormula.bmp", basicFormulaFormula.getImage() };
 }
 }

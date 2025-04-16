@@ -14,7 +14,9 @@ public:
 
     Image(size_t w, size_t h);
 
-    static size_t getIndex(size_t w, int row, int col);
+    static size_t getIndex(size_t w, int x, int y);
+
+    size_t getIndex(int x, int y);
     
-    Pixel& getPixel(int row, int col);
+    Pixel& getPixel(int x, int y);
 };

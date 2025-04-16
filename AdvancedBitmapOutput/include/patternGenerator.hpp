@@ -24,5 +24,7 @@ struct SolidColor : public PatternGen {
 
 // Will draw a formula
 struct BasicFormula : public PatternGen {
-    BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), const Pixel& pix);
+    BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), u_char r, u_char g, u_char b);
+
+    BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color color);
 };
