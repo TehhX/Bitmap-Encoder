@@ -56,6 +56,7 @@ void formula() {
 
     Encoder enc { "formula.bmp", inFormula.getImage() };
 }
+
 int main() {
     chromaManual();
 
