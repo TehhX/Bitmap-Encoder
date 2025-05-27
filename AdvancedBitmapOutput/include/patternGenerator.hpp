@@ -28,3 +28,7 @@ struct BasicFormula : public PatternGen {
 
     BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color color);
 };
+
+struct AllRGB : public PatternGen {
+    AllRGB();
+};

@@ -41,4 +41,9 @@ int main() {
     BasicFormula basicFormulaFormula { 1920, 1080, quadraticFormulaExample, Color::blue };
     Encoder basicFormulaEncoder { "quadraticFormula.bmp", basicFormulaFormula.getImage() };
 }
+
+{
+    AllRGB allRGBExample {};
+    Encoder allRGBEndocer { "allRGB.bmp", allRGBExample.getImage() };
+}
 }

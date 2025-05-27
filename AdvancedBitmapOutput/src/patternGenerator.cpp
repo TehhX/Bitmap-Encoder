@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include <patternGenerator.hpp>
+
+#include <iostream>
 
 PatternGen::PatternGen(size_t w, size_t h)
 : img { w, h } {
@@ -9,7 +9,7 @@ PatternGen::PatternGen(size_t w, size_t h)
         exit(-1);
     }
 
-    img.pixels = new Pixel[ img.pixelCount ];
+    img.pixels = new Pixel[img.pixelCount];
 }
 
 Image& PatternGen::getImage() {
@@ -38,3 +38,18 @@ BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), u_char
 
 BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color color)
 : BasicFormula { w, h, formula, colorR(color), colorG(color), colorB(color) } {}
+
+AllRGB::AllRGB()
+// 4096^2 for 256^3 colors.
+: PatternGen { 4096, 4096 } {
+    size_t indexActual { 0 };
+
+    for (int b { 0 }; b < 256; b++)
+        for (int g { 0 }; g < 256; g++)
+            for (int r { 0 }; r < 256; r++)
+                img.pixels[indexActual++] = {
+                    static_cast<u_char>(r),
+                    static_cast<u_char>(g),
+                    static_cast<u_char>(b)
+                };
+}
