@@ -20,9 +20,5 @@ public:
 
     size_t getIndex(int x, int y);
 
-    static std::pair<size_t, size_t> getPoint(size_t w, size_t index);
-
-    std::pair<size_t, size_t> getPoint(size_t index);
-
     Pixel& getPixel(int x, int y);
 };

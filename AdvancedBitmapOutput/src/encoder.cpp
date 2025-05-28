@@ -10,9 +10,6 @@ static constexpr int zero { 0 };
 // Write <SIZE> zeros to file
 #define writeBinaryZeros(SIZE) writeBinaryValue(zero, SIZE)
 
-// Write <PIXEL> to file (b, g, r)
-#define writeBinaryPixel(PIXEL) { const Pixel& p { PIXEL }; writeBinaryValue(p.b, 1); writeBinaryValue(p.g, 1); writeBinaryValue(p.r, 1); }
-
 Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
 : out { fileName, std::ios::out | std::ios::binary }, pixels { pixels }, w { w }, h { h }, pixelCount { w * h } {
     if (out.fail()) {
@@ -54,8 +51,13 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
 
 // Write pixel array
     for (auto row { static_cast<llong>(h) - 1 }; row >= 0; row--) {
-        for (size_t col { 0 }; col < w; col++)
-            writeBinaryPixel(pixels[Image::getIndex(w, col, row)]);
+        for (size_t col { 0 }; col < w; col++) {
+            const Pixel& pix { pixels[Image::getIndex(w, col, row)] };
+
+            writeBinaryValue(pix.b, 1);
+            writeBinaryValue(pix.g, 1);
+            writeBinaryValue(pix.r, 1);
+        }
 
         writeBinaryZeros(padsPerRow);
     }

@@ -16,17 +16,6 @@ size_t Image::getIndex(int x, int y) {
     return getIndex(w, x, y);
 }
 
-/* static */ std::pair<size_t, size_t> Image::getPoint(size_t w, size_t index) {
-    return {
-        index % w, // X
-        index / w  // Y
-    };
-}
-
-std::pair<size_t, size_t> Image::getPoint(size_t index) {
-    return (getPoint(w, index));
-}
-
 Pixel& Image::getPixel(int x, int y) {
     return pixels[getIndex(w, x, y)];
 }
