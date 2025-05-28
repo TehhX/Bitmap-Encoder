@@ -37,7 +37,7 @@ int main() {
 }
 
 {
-    const auto quadraticFormulaExample { [](size_t x) -> size_t { return std::pow((static_cast<long long>(x) - 960) / 29.5, 2); } };
+    const auto quadraticFormulaExample { [](size_t x) -> size_t { return std::pow((static_cast<llong>(x) - 960) / 29.5, 2); } };
     BasicFormula basicFormulaFormula { 1920, 1080, quadraticFormulaExample, Color::blue };
     Encoder basicFormulaEncoder { "quadraticFormula.bmp", basicFormulaFormula.getImage() };
 }

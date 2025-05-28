@@ -6,7 +6,7 @@ PatternGen::PatternGen(size_t w, size_t h)
 : img { w, h } {
     if (img.pixelCount != img.w * img.h) {
         std::cerr << "Incorrect image size. Pixel count: " << img.pixelCount << ", Excepted: " << img.w * img.h << '\n';
-        exit(-1);
+        exit(1);
     }
 
     img.pixels = new Pixel[img.pixelCount];
@@ -43,7 +43,7 @@ AllRGB::AllRGB()
 : PatternGen { 4096, 4096 } { // 4096^2 for 256^3 colors.
     for (int b { 0 }; b < 256; b++)
     for (int g { 0 }; g < 256; g++)
-    for (int r { 0 }; r < 256; r++) {
+    for (int r { 0 }; r < 256; r++) { // Innermost loop
         static size_t i { 0 };
         img.pixels[i++] = {
             static_cast<u_char>(r),
@@ -51,6 +51,6 @@ AllRGB::AllRGB()
             static_cast<u_char>(b)
         };
 
-        printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", i, img.getPoint(i).first, img.getPoint(i).second, r, g, b);
+        // printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", i, img.getPoint(i).first, img.getPoint(i).second, r, g, b);
     }
 }

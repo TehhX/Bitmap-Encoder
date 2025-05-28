@@ -15,8 +15,6 @@ enum class Color : u_char {
     orange,
     purple,
     pink
-
-,   max
 };
 
 struct Pixel {
@@ -25,6 +23,10 @@ struct Pixel {
 
 inline Pixel pixelFromColor(Color color) {
     switch (color) {
+    default:
+        std::cerr << "Bad pixelFromColor(Color) input.\n";
+        exit(1);
+
     case Color::black:  return {   0,   0,   0 };
     case Color::white:  return { 255, 255, 255 };
     case Color::red:    return { 255,   0,   0 };
@@ -34,9 +36,6 @@ inline Pixel pixelFromColor(Color color) {
     case Color::orange: return { 255, 127,   0 };
     case Color::purple: return { 148,  87, 235 };
     case Color::pink:   return { 255,  16, 240 };
-    default:
-        std::cerr << "Bad pixelFromColor(Color) input.\n";
-        exit(-1);
     }
 }
 
@@ -50,8 +49,4 @@ inline u_char colorG(Color color) {
 
 inline u_char colorB(Color color) {
     return pixelFromColor(color).b;
-}
-
-inline std::ostream& operator<<(std::ostream& out, const Pixel& pix) {
-    return out << pix.b << pix.g << pix.r;
 }
