@@ -1,9 +1,9 @@
 #pragma once
 
+#include <encoderDefs.hpp>
+
 #include <ostream>
 #include <iostream>
-
-#include <encoderDefs.hpp>
 
 enum class Color : u_char {
     black,

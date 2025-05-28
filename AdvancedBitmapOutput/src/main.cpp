@@ -1,10 +1,10 @@
-#include <iostream>
-#include <cmath>
-
 #include <encoderDefs.hpp>
 #include <pixel.hpp>
 #include <encoder.hpp>
 #include <patternGenerator.hpp>
+
+#include <iostream>
+#include <cmath>
 
 int main() {
 {

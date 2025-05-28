@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include <image.hpp>
+
+#include <iostream>
 
 Image::Image(Pixel pixels[], size_t w, size_t h) 
 : pixels { pixels }, w { w }, h { h }, pixelCount { w * h } {}

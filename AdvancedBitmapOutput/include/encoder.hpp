@@ -1,10 +1,10 @@
 #pragma once
 
-#include <fstream>
-
 #include <encoderDefs.hpp>
 #include <image.hpp>
 #include <pixel.hpp>
+
+#include <fstream>
 
 class Encoder {
     std::ofstream out;

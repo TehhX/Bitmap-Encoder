@@ -1,9 +1,9 @@
 #pragma once
 
-#include <utility>
-
 #include <encoderDefs.hpp>
 #include <pixel.hpp>
+
+#include <utility>
 
 class Image {
 public:

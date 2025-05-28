@@ -1,10 +1,10 @@
 #pragma once
 
-#include <random>
-
 #include <pixel.hpp>
 #include <encoderDefs.hpp>
 #include <image.hpp>
+
+#include <random>
 
 class PatternGen {
 protected:

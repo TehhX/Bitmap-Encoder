@@ -1,7 +1,8 @@
-#include <iostream>
-
 #include <encoder.hpp>
+
 #include <image.hpp>
+
+#include <iostream>
 
 // Write <VAL> to file within <SIZE> bytes.
 #define writeBinaryValue(VAL, SIZE) out.write(reinterpret_cast<const char*>(&VAL), SIZE)
