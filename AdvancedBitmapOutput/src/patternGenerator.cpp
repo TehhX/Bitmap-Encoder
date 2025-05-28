@@ -46,10 +46,13 @@ AllRGB::AllRGB()
 
     for (int b { 0 }; b < 256; b++)
         for (int g { 0 }; g < 256; g++)
-            for (int r { 0 }; r < 256; r++)
+            for (int r { 0 }; r < 256; r++) {
+                printf("I: %zu\nX: %d\nY: %d\nR: %d\nG: %d\nB: %d\n\n", indexActual, img.getPoint(indexActual).first, img.getPoint(indexActual).second, r, g, b);
+
                 img.pixels[indexActual++] = {
                     static_cast<u_char>(r),
                     static_cast<u_char>(g),
                     static_cast<u_char>(b)
                 };
+            }
 }
