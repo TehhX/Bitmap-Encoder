@@ -41,17 +41,16 @@ BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color 
 
 AllRGB::AllRGB()
 : PatternGen { 4096, 4096 } { // 4096^2 for 256^3 colors.
-    #define i static_cast<size_t>((r) + (g * 256) + (256 * 256 * b))
     for (int b { 0 }; b < 256; b++)
     for (int g { 0 }; g < 256; g++)
     for (int r { 0 }; r < 256; r++) {
-        // printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", i, img.getPoint(i).first, img.getPoint(i).second, r, g, b);
-
-        img.pixels[i] = {
+        static size_t i { 0 };
+        img.pixels[i++] = {
             static_cast<u_char>(r),
             static_cast<u_char>(g),
             static_cast<u_char>(b)
         };
+
+        printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", i, img.getPoint(i).first, img.getPoint(i).second, r, g, b);
     }
-    #undef i
 }
