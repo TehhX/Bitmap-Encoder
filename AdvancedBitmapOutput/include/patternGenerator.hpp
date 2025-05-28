@@ -1,10 +1,10 @@
 #pragma once
 
-#include <random>
-
 #include <pixel.hpp>
 #include <encoderDefs.hpp>
 #include <image.hpp>
+
+#include <random>
 
 class PatternGen {
 protected:
@@ -27,4 +27,8 @@ struct BasicFormula : public PatternGen {
     BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), u_char r, u_char g, u_char b);
 
     BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color color);
+};
+
+struct AllRGB : public PatternGen {
+    AllRGB();
 };

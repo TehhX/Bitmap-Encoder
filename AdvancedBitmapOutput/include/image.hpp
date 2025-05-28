@@ -3,6 +3,8 @@
 #include <encoderDefs.hpp>
 #include <pixel.hpp>
 
+#include <utility>
+
 class Image {
 public:
     Pixel* pixels;
@@ -17,6 +19,6 @@ public:
     static size_t getIndex(size_t w, int x, int y);
 
     size_t getIndex(int x, int y);
-    
+
     Pixel& getPixel(int x, int y);
 };
