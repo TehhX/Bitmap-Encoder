@@ -24,7 +24,7 @@ SolidColor::SolidColor(size_t w, size_t h, Color color)
 BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), u_char r, u_char g, u_char b) 
 : PatternGen { w, h } {
     for (size_t x { 0 }; x < img.w; x++) {
-        u_long y { -formula(x) + h - 1 };
+        size_t y { -formula(x) + h - 1 };
 
         if (y < img.h)
             img.getPixel(x, y) = { r, g, b };
@@ -38,7 +38,7 @@ AllRGB::AllRGB()
 : PatternGen { 4096, 4096 } { // 4096^2 for 256^3 colors.
     for (int b { 0 }; b < 256; b++)
     for (int g { 0 }; g < 256; g++)
-    for (int r { 0 }; r < 256; r++) { // Innermost loop
+    for (int r { 0 }; r < 256; r++) {
         static size_t i { 0 };
 
         img.pixels[i++] = {
