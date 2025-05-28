@@ -40,19 +40,18 @@ BasicFormula::BasicFormula(size_t w, size_t h, size_t (*formula)(size_t), Color 
 : BasicFormula { w, h, formula, colorR(color), colorG(color), colorB(color) } {}
 
 AllRGB::AllRGB()
-// 4096^2 for 256^3 colors.
-: PatternGen { 4096, 4096 } {
-    size_t indexActual { 0 };
-
+: PatternGen { 4096, 4096 } { // 4096^2 for 256^3 colors.
+    #define i static_cast<size_t>((r) + (g * 256) + (256 * 256 * b))
     for (int b { 0 }; b < 256; b++)
-        for (int g { 0 }; g < 256; g++)
-            for (int r { 0 }; r < 256; r++) {
-                printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", indexActual, img.getPoint(indexActual).first, img.getPoint(indexActual).second, r, g, b);
+    for (int g { 0 }; g < 256; g++)
+    for (int r { 0 }; r < 256; r++) {
+        // printf("I: %zu\nX: %zu\nY: %zu\nR: %d\nG: %d\nB: %d\n\n", i, img.getPoint(i).first, img.getPoint(i).second, r, g, b);
 
-                img.pixels[indexActual++] = {
-                    static_cast<u_char>(r),
-                    static_cast<u_char>(g),
-                    static_cast<u_char>(b)
-                };
-            }
+        img.pixels[i] = {
+            static_cast<u_char>(r),
+            static_cast<u_char>(g),
+            static_cast<u_char>(b)
+        };
+    }
+    #undef i
 }
