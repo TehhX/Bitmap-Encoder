@@ -4,7 +4,8 @@
 
 PatternGen::PatternGen(size_t w, size_t h)
 : img { w, h } {
-    img.pixels = new Pixel[img.pixelCount];
+    // Zero initialize or else new images may have previous images or garbage imprinted. Remove the '()' for cool effects
+    img.pixels = new Pixel[img.pixelCount]();
 }
 
 PatternGen::~PatternGen() {
@@ -57,7 +58,7 @@ Neapolitan::Neapolitan(size_t w, size_t h)
 : PatternGen { w, h } {
     static constexpr Pixel strawberry { 251, 177, 178 };
     static constexpr Pixel    vanilla { 243, 229, 171 };
-    static constexpr Pixel  chocolate {   98, 52,  18 };
+    static constexpr Pixel  chocolate {  98,  52,  18 };
 
     const size_t leftMargin  { w / 3 };
     const size_t rightMargin { w - leftMargin };

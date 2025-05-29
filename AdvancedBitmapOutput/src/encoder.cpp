@@ -27,9 +27,9 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
     static constexpr int compression        {    0 };
     static constexpr int dpi                { 2835 };
 
-    const auto padsPerRow    { w % 4 == 0 ? 0 : -(static_cast<u_long>(bytesPerPixel * w) % byteFactorRequired) + byteFactorRequired };
-    const auto pixelDataSize { static_cast<u_long>(bytesPerPixel * pixelCount + h * padsPerRow) };
-    const auto fileSize      { headerSize + pixelDataSize };
+    const u_long padsPerRow    { w % 4 == 0 ? 0 : -(static_cast<u_long>(bytesPerPixel * w) % byteFactorRequired) + byteFactorRequired };
+    const u_long pixelDataSize { static_cast<u_long>(bytesPerPixel * pixelCount + h * padsPerRow) };
+    const u_long fileSize      { headerSize + pixelDataSize };
 
 // Write BMP header
     out << 'B' << 'M';
@@ -51,10 +51,11 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
     writeBinaryZeros(4);
 
 // Write pixel array
-    for (auto row { static_cast<llong>(h) - 1 }; row >= 0; row--) {
+    for (llong row { static_cast<llong>(h) - 1 }; row >= 0; row--) {
         for (size_t col { 0 }; col < w; col++) {
             const Pixel& pix { pixels[Image::getIndex(w, col, row)] };
 
+            // Little endian means RGB -> BGR
             writeBinaryValue(pix.b, 1);
             writeBinaryValue(pix.g, 1);
             writeBinaryValue(pix.r, 1);
@@ -69,6 +70,8 @@ Encoder::Encoder(std::string fileName, Pixel pixels[], size_t w, size_t h)
         std::cerr << "Could not close file.\n";
         exit(1);
     }
+
+    std::cout << "Successfully wrote " << fileName << " to disk.\n";
 }
 
 Encoder::Encoder(std::string fileName, Image& image)
