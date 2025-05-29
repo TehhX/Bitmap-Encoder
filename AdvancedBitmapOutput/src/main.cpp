@@ -52,7 +52,7 @@ void solidColor() {
 }
 
 void formulaSin() {
-    const auto formula { [](size_t x) -> size_t { return 1080 / 2 * std::sin(x / 50.0) + 1080 / 2; } };
+    const auto formula { [](size_t x) -> size_t { return 960 * std::sin(x / 50.0) + 960; } };
     BasicFormula patternGen { 1920, 1080, formula, Color::orange };
     Encoder enc { "sinusoidalFormula.bmp", patternGen.getImage() };
 }
