@@ -46,4 +46,9 @@ int main() {
     AllRGB allRGBExample {};
     Encoder allRGBEndocer { "allRGB.bmp", allRGBExample.getImage() };
 }
+
+{
+    Neapolitan neapolitan {};
+    Encoder neapolitanEncoder { "neapolitan.bmp", neapolitan.getImage() };
+}
 }

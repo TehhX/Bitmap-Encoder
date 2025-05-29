@@ -7,6 +7,10 @@ PatternGen::PatternGen(size_t w, size_t h)
     img.pixels = new Pixel[img.pixelCount];
 }
 
+PatternGen::~PatternGen() {
+    delete img.pixels;
+}
+
 Image& PatternGen::getImage() {
     return img;
 }
@@ -46,5 +50,26 @@ AllRGB::AllRGB()
             static_cast<u_char>(g),
             static_cast<u_char>(b)
         };
+    }
+}
+
+Neapolitan::Neapolitan(size_t w, size_t h)
+: PatternGen { w, h } {
+    static constexpr Pixel strawberry { 251, 177, 178 };
+    static constexpr Pixel    vanilla { 243, 229, 171 };
+    static constexpr Pixel  chocolate {   98, 52,  18 };
+
+    const size_t leftMargin  { w / 3 };
+    const size_t rightMargin { w - leftMargin };
+
+    for (size_t i { 0 }; i < img.pixelCount; i++) {
+        size_t x { i % w };
+
+        if (x < leftMargin)
+            img.pixels[i] = strawberry;
+        else if (x < rightMargin)
+            img.pixels[i] = vanilla;
+        else
+            img.pixels[i] = chocolate;
     }
 }

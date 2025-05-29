@@ -12,6 +12,8 @@ protected:
 
     PatternGen(size_t w, size_t h);
 
+    virtual ~PatternGen();
+
 public:
     Image& getImage();
 };
@@ -31,4 +33,8 @@ struct BasicFormula : public PatternGen {
 
 struct AllRGB : public PatternGen {
     AllRGB();
+};
+
+struct Neapolitan : public PatternGen {
+    Neapolitan(size_t w = 1920, size_t h = 1080);
 };
