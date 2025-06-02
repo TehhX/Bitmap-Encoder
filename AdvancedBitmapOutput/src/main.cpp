@@ -16,7 +16,8 @@ void removePreviousImages() {
         "sinusoidalFormula.bmp",
         "quadraticFormula.bmp",
         "allRGB.bmp",
-        "neapolitan.bmp"
+        "neapolitan.bmp",
+        "wavePacket.bmp"
     };
 
     for (const char* name : names)
@@ -73,6 +74,12 @@ void neapolitan() {
     Encoder enc { "neapolitan.bmp", patternGen.getImage() };
 }
 
+void wavePacket() {
+    const auto formula { [](size_t x) -> size_t { return std::sin((double(x) - 1000) / 50) / ((double(x) - 1000) / (50)) * 800 + 200; } };
+    BasicFormula patternGen { 1920, 1080, formula, 0, 128, 128 };
+    Encoder enc { "wavePacket.bmp", patternGen.getImage() };
+}
+
 int main() {
     removePreviousImages();
 
@@ -89,4 +96,6 @@ int main() {
     allRGB();
 
     neapolitan();
+
+    wavePacket();
 }
